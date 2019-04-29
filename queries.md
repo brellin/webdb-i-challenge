@@ -4,7 +4,7 @@
  > `select * from customers where city = 'London'`
 
 ## find all customers with postal code 1010. Returns 3 customers.
-> `select * from customers where postalcode = '1010'`
+> `select * from customers where postalcode = 1010`
 
 ## find the phone number for the supplier with the id 11. Should be (010) 9984510.
 > `select phone from suppliers where supplierid = 11`
@@ -19,7 +19,8 @@
 > `select * from customers where customername like '%market%'`
 
 ## add a customer record for _"The Shire"_, the contact name is _"Bilbo Baggins"_ the address is _"1 Hobbit-Hole"_ in _"Bag End"_, postal code _"111"_ and the country is _"Middle Earth"_.
-> ``
+> `insert into customers (customername, contactname, address, postalcode, country)
+> 'The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 111, 'Middle Earth'`
 
 ## update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
 > ``
