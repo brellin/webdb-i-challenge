@@ -23,16 +23,18 @@
 > 'The Shire', 'Bilbo Baggins', '1 Hobbit-Hole', 111, 'Middle Earth'`
 
 ## update _Bilbo Baggins_ record so that the postal code changes to _"11122"_.
-> ``
+> `update characters set
+    >  postalcode = 11122
+> where name = 'Bilbo Baggins'`
 
 ## list orders grouped by customer showing the number of orders per customer. _Rattlesnake Canyon Grocery_ should have 7 orders.
-> ``
+> `select count(customerid) OrderCount from orders group by customerid`
 
 ## list customers names and the number of orders per customer. Sort the list by number of orders in descending order. _Ernst Handel_ should be at the top with 10 orders followed by _QUICK-Stop_, _Rattlesnake Canyon Grocery_ and _Wartian Herkku_ with 7 orders each.
-> ``
+> `select count(orders.customerid) as OrderCount, customers.customername from customers, orders where customers.customerid = orders.customerid group by orders.customerid order by OrderCount desc`
 
 ## list orders grouped by customer's city showing number of orders per city. Returns 58 Records with _Aachen_ showing 2 orders and _Albuquerque_ showing 7 orders.
-> ``
+> `select count(customers.city) OrderCountByCity, City from customers, orders where customers.customerid = orders.customerid group by customers.city`
 
 ## delete all users that have no orders. Should delete 17 (or 18 if you haven't deleted the record added) records.
-> ``
+> `delete count(orders.customerid) as OrderCount, customers.customername from customers, orders where customers.customerid = orders.customerid and OrderCount = 0 group by orders.customerid order by OrderCount desc`
